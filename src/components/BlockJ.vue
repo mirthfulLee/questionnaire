@@ -10,7 +10,7 @@
     <!--    <div v-for="question in main_questions" :key="question.id" class="question">-->
     <!--    </div>-->
     <TFRow :question="q[0]" class="question"
-           @change="change_hidden_status()" jumpable></TFRow>
+           @change="change_hidden_status" jumpable></TFRow>
     <Remider content="圈出曾服用过的每种药物:"/>
     <el-row class="question">
       <el-col :span="3">
@@ -117,7 +117,6 @@
       <TFRow :question="q[18]" class="question"></TFRow>
       <TFRow :question="q[19]" class="question"></TFRow>
 
-      <!-- D5, D6 -->
     </div>
 
     <!-- 诊断框 -->

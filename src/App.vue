@@ -356,7 +356,7 @@ export default {
           remark: "",
         },
         {
-          id: "",
+          id: "E1a",
           desc: "E1是否有2个及以上地方编码“是”",
           type: "TF",
           select: null,
@@ -487,7 +487,7 @@ export default {
           remark: "",
         },
         {
-          id: "",
+          id: "G3c",
           desc: "（G1a并且G1b并且G2）或（G3a并且G3b）是否编码“是”？",
           type: "TF",
           select: null,
@@ -866,8 +866,8 @@ export default {
           remark: "",
         },
         {
-          id: "镇静剂、催眠药或抗焦虑药 ",
-          desc: "(2个或2个以上戒断症状)",
+          id: "J2k1a",
+          desc: "镇静剂、催眠药或抗焦虑药 (2个或2个以上戒断症状)",
           type: "MultiOptionRow",
           options: ['大量出汗或心率加快', '手震颤或“手抖”', '睡眠困难', '恶心或呕吐',
             '听见或看见别人听不见或看不见的东西，或者皮肤无明显原因出现感觉', '激越状态', '焦虑', '癫痫发作'],
@@ -875,8 +875,8 @@ export default {
           remark: "",
         },
         {
-          id: "阿片类",
-          desc: " (3个或3个以上戒断症状)",
+          id: "J2k1b",
+          desc: "阿片类(3个或3个以上戒断症状)",
           type: "MultiOptionRow",
           options: ['感到压抑', '恶心或呕吐', '肌肉疼痛', '流鼻涕或流泪',
             '瞳孔散大，鸡皮疙瘩或毛发竖立或出汗', '腹泻', '打哈欠', '潮热', '睡眠困难'],
@@ -884,8 +884,8 @@ export default {
           remark: "",
         },
         {
-          id: "兴奋剂和可卡因",
-          desc: " (2个或2个以上戒断症状)",
+          id: "J2k1c",
+          desc: "兴奋剂和可卡因(2个或2个以上戒断症状)",
           type: "MultiOptionRow",
           options: ['乏力', '生动或不愉快的梦', '睡眠困难或睡眠过多', '食欲增加',
             '感觉或看起来生理或心理反应减慢了'],
@@ -893,8 +893,8 @@ export default {
           remark: "",
         },
         {
-          id: "大麻",
-          desc: "(3个或3个以上戒断症状)",
+          id: "J2k1d",
+          desc: "大麻(3个或3个以上戒断症状)",
           type: "MultiOptionRow",
           options: ['易怒、愤怒或有攻击性', '紧张或焦虑', '睡眠困难', '食欲或体重下降',
             '不安', '感到压抑', '“肚子疼”或震颤或 “抖”或出汗或潮热寒颤或头疼'],
@@ -991,6 +991,7 @@ export default {
           select: null,
           remark: "",
         },
+
         {
           id: "K6a",
           desc: "你有没有听过别人听不到的声音？",
@@ -999,7 +1000,7 @@ export default {
           remark: "",
         },
         {
-          id: "",
+          id: "K6a1",
           desc: "你听到的声音是在评论你的想法或行为，或是你听到两个" +
               "或两个以上的声音在相互交谈吗？",
           type: "TF",
@@ -1014,7 +1015,7 @@ export default {
           remark: "",
         },
         {
-          id: "",
+          id: "K6b1",
           desc: "你听到的声音是在评论你的想法或行为，或是你听到两个或两个以上的声音在相互交谈吗？",
           type: "TF",
           select: null,
@@ -1319,11 +1320,7 @@ export default {
     },
     export_json_data() {
       this.finish_questionnaire()
-      const json_data = {
-        detail_info: this.detail_info,
-        questionC: this.questionC,
-        diagnosis_contentC: this.diagnosis_contentC,
-      }
+      const json_data = this.$data
       export_csv(json_data)
     },
     export_pdf(){
