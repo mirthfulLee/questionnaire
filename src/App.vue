@@ -17,7 +17,6 @@
   <BlockO :questions="questionO" :diagnosis=null></BlockO>
   <BlockP :questions="questionP" :diagnosis="diagnosis_contentP"></BlockP>
   <BlockQ :questions="questionQ" :diagnosis="diagnosis_contentQ"></BlockQ>
-  <el-button @click="export_json_data">导出pdf文件</el-button>
 
   <el-button @click="export_json_data">导出csv文件</el-button>
   <el-button @click="export_pdf">导出pdf文件</el-button>
