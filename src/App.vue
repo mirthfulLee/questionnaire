@@ -10,6 +10,13 @@
   <BlockH :questions="questionH" :diagnosis="diagnosis_contentH"></BlockH>
   <BlockI :questions="questionI" :diagnosis="diagnosis_contentI"></BlockI>
   <BlockJ :questions="questionJ" :diagnosis="diagnosis_contentJ"></BlockJ>
+  <BlockL :questions="questionL" :diagnosis="diagnosis_contentL"></BlockL>
+  <BlockM :questions="questionM" :diagnosis="diagnosis_contentM"></BlockM>
+  <BlockMB :questions="questionMB" :diagnosis="diagnosis_contentMB"></BlockMB>
+  <BlockN :questions="questionN" :diagnosis="diagnosis_contentN"></BlockN>
+  <BlockO :questions="questionO" :diagnosis=null></BlockO>
+  <BlockP :questions="questionP" :diagnosis="diagnosis_contentP"></BlockP>
+  <BlockQ :questions="questionQ" :diagnosis="diagnosis_contentQ"></BlockQ>
 
   <el-button @click="export_json_data">导出csv文件</el-button>
   <el-button @click="export_pdf">导出pdf文件</el-button>
@@ -26,6 +33,13 @@ import BlockI from "./components/BlockI";
 import BlockJ from "./components/BlockJ";
 import InfoHeader from "./components/InfoHeader";
 import {export_csv} from "../public/scripts/convert"
+import BlockQ from "./components/BlockQ";
+import BlockL from "./components/BlockL";
+import BlockM from "./components/BlockM";
+import BlockMB from "./components/BlockMB";
+import BlockN from "./components/BlockN";
+import BlockO from "./components/BlockO";
+import BlockP from "./components/BlockP";
 
 export default {
   name: 'App',
@@ -38,7 +52,14 @@ export default {
     BlockF,
     BlockD,
     BlockC,
-    BlockE
+    BlockE,
+    BlockL,
+    BlockM,
+    BlockMB,
+    BlockN,
+    BlockO,
+    BlockP,
+    BlockQ,
   },
   data() {
     return {
@@ -1099,6 +1120,498 @@ export default {
           remark: "",
         },
       ],
+      questionQ: [
+        {
+          id: "Q1a",
+          desc: "K11b 编码为“是”吗？",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "Q1b",
+          desc: "K12a 编码为“是”吗？",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "Q2a",
+          desc: "如果一个妄想的想法被发现在A3e或者在K1到K7的任何精神病特征中，则编码为 “是 ”",
+          type: "PeriodTF",
+          having: null,
+          had: null,
+          remark: "",
+        },
+        {
+          id: "Q2b",
+          desc: "如果一个妄想的想法被发现在 C3a或者在K1到K7的任何精神病特征中，则编码为 “是",
+          type: "PeriodTF",
+          having: null,
+          had: null,
+          remark: "",
+        },
+        {
+          id: "Q2f",
+          desc: "{重度抑郁发作编号为否吗(当前和既往)？并且躁狂发作编码否(当前和既往)? " +
+              "并且 C4b在适当的时间范围内编码为是 ?并且C8b编码为是?} " +
+              " 或者 " +
+              " {躁狂发作编码为“否 ”(当前和既往)?并且轻躁狂发作编码为 “否” (当前和既往)? " +
+              "并且 C4a在适当的时间范围内编码为“是”吗？并且C8b编码为“是”吗?}",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+      ],
+      questionP: [
+        {
+          id: "P1a",
+          desc: "经常违反父母的规定逃学、离家出走或晚上在外面过夜？",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "P1b",
+          desc: "经常说谎、欺骗、“诓骗”别人、偷窃或闯入别人的房子或汽车?",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "P1c",
+          desc: "打架、欺负、威胁或恐吓他人?",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "P1d",
+          desc: "故意毁坏东西或引起火灾?",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "P1e",
+          desc: "故意伤害动物或人?",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "P1f",
+          desc: "强迫某人进行性活动?",
+              type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "P1g",
+          desc: "P1的回答编码有2项或以上“是”吗？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "P2a",
+          desc: "你是否：是否有做一些违法或有可能被逮捕的事情，即使你没有因此被抓住(例如毁坏财物、入店行窃、偷窃、贩卖毒品或犯重罪）?",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "P2b",
+          desc: "你是否：是否经常说谎或“欺骗”别人以获得金钱或快乐，或仅仅为了快乐而说",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "P2c",
+          desc: "是否冲动，不进行提前计划?",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "P2d",
+          desc: "是否多次与他人发生肢体冲突或殴打他人(包括与配偶或子女)",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "P2e",
+          desc: "是否把别人或自己置于危险之中不关心?",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "P2f",
+          desc: "反复以别人认为不负责任的方式行事，比如不付欠款，故意冲动或者故意不工作",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "P2g",
+          desc: "伤害、虐待、欺骗、窃取他人财物或破坏财产后不感到内疚",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+      ],
+      questionO: [
+        {
+          id: "O1a",
+          desc: "你是否服用了毒品或药物，或正在戒除这些药物？",
+          type: "OptionRow",
+          select: null,
+          options: ["是", "否", "不确定"],
+          remark: "",
+        },
+        {
+          id: "O1b",
+          desc: "你是否有器质性疾病?",
+          type: "OptionRow",
+          select: null,
+          options: ["是", "否", "不确定"],
+          remark: "",
+        },
+        {
+          id: "O2a",
+          desc: " 如果 O1a 或者 O1b 编码回答为“ 是”,临床医生判断这些情况有无可能直接导致了患者的紊乱。",
+          type: "OptionRow",
+          select: null,
+          options: ["是", "否", "不确定"],
+          remark: "",
+        },
+        {
+          id: "O2b",
+          desc: "O2总结:是否排除了与躯体/医疗/药物相关的原因?\n" +
+              "如果O2编码回答为“是”，那么O2总结编码回答为“否”。\n" +
+              "如果O2编码回答为“否”，那么O2总结编码回答为“是”。\n" +
+              "否则是不确定的。\n",
+          type: "OptionRow",
+          select: null,
+          options: ["是", "否", "不确定"],
+          remark: "",
+        },
+      ],
+      questionN: [
+        {
+          id: "N1a",
+          desc: "在过去的6个月里，你是否对一些日常事务过分焦虑或担心?\n" +
+              "如果病人不明白你的意思，你可以询问\n" +
+              "别人认为你是一个容易焦虑或者杞人忧天的人吗?可以通过举例说明.\n",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "N1b",
+          desc: "大多数的日子你都很担心吗？",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "N1c",
+          desc: "病人的焦虑和忧虑是否能用之前的精神障碍解释吗?",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "N2",
+          desc: "你是否觉得很难控制自己的担心?",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "N3a",
+          desc: "是否感到焦躁、紧张或不安?",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "N3b",
+          desc: "是否有肌肉紧张吗?",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "N3c",
+          desc: "是否感到疲倦、虚弱或容易疲劳?",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "N3d",
+          desc: "是否难以集中注意力、或感觉大脑一片空白？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "N3e",
+          desc: "是否感到易激惹？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "N3f",
+          desc: "是否有睡眠障碍（难以入睡、夜间醒来、早醒或睡眠过多）？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "N3g",
+          desc: "有3项或以上回答编码为“是”吗？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+      ],
+      questionMB: [
+        {
+          id: "MB1",
+          desc: "患者的症状符合神经性厌食症的标准吗",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "MB2",
+          desc: "患者的症状符合神经性贪食症的标准吗？",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "MB3",
+          desc: "该患者M2编码为“是”吗？?",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "MB4",
+          desc: "该患者M3编码为“是”吗？?",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "MB5",
+          desc: "该患者M4编码为“是”吗?",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "MB6a",
+          desc: "你吃得比正常情况快得多吗?",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "MB6b",
+          desc: "你会一直进食不舒服的饱胀感出现吗？?",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "MB6c",
+          desc: "即使你并不感到饥饿也会吃大量的食物吗？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "MB6d",
+          desc: "你会因为进食过多感到尴尬而独自进食吗？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "MB6e",
+          desc: "你暴食之后会感到内疚、抑郁或厌恶自己吗？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "MB6f",
+          desc: "MB6中有3项及以上的问题编码“是”吗？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "MB7",
+          desc: "你觉得暴食在折磨你吗？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "MB8a",
+          desc: "每周暴食发作的次数？",
+          type: "InputRow",
+          remark: "",
+        },
+        {
+          id: "MB8b",
+          desc: "每周暴食发作的天数？",
+          type: "InputRow",
+          remark: "",
+        },
+      ],
+      questionM: [
+        {
+          id: "M1",
+          desc: " 在过去三个月内，你是否曾暴食或在两个小时内进食过量的食物",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "M2",
+          desc: "你暴食的时候，是否感觉你的进食无法控制？？",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "M3",
+          desc: "你是否每周都出现暴食?",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "M4",
+          desc: "为了避免暴食后的体重增加，你是否采取了补偿行为如：催吐、禁食、运动、服用泻药、灌肠、利尿剂（水剂药物）或其他药物？至少一周一次?",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "M4a1",
+          desc: "每周这类补偿行为的发作次数？",
+          type: "InputRow",
+          remark: "",
+        },
+        {
+          id: "M4a2",
+          desc: "每周这类补偿行为的发作天数？",
+          type: "InputRow",
+          remark: "",
+        },
+        {
+          id: "M5",
+          desc: "你的体重或体形是否严重影响了你对自己的感觉？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "M6",
+          desc: "患者的症状符合神经性厌食症的标准吗？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "M7a",
+          desc: " 这种暴食现象只发生在你体重低于（____公斤）的时候吗？\n" +
+              "参考神经性厌食题组的标准身高体重，在括号中记录符合患者身高的标准体重",
+          type: "InputRow",
+          remark: "",
+        },
+        {
+          id: "M7b",
+          desc: " 这种暴食现象只发生在你体重低于（____公斤）的时候吗?",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+      ],
+      questionL: [
+        {
+          id: "L1a",
+          desc: "你的身高是多少？",
+          type: "InputRow",
+          remark: "",
+        },
+        {
+          id: "L1b",
+          desc: "过去三个月内，你的最低体重是多少？",
+          type: "InputRow",
+          remark: "",
+        },
+        {
+          id: "L1c",
+          desc: "患者的体重是否等于或低于其身高相对应的体重下限？（参看本页后面的参考标准）",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "L2",
+          desc: "尽管体重这么低，你是否仍然尝试不增加体重或限制饮食摄入?",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "L3",
+          desc: "尽管你的体重已经很低，你是否仍然害怕体重增加或者发胖？",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "L4a",
+          desc: "你是否认为自己太胖，或者身体的某部分太胖？",
+          type: "TF",
+          select: null,
+          remark: "",
+        },
+        {
+          id: "L4b",
+          desc: "你的体重或体形是否严重影响了你对自己的感觉？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "L4c",
+          desc: "你是否觉得目前的低体重状态是正常现象甚至还太胖？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+        {
+          id: "L5",
+          desc: " 在L4中，有1项及以上的编码为“是”吗？",
+          type: "TF",
+          select: false,
+          remark: "",
+        },
+      ],
 
 
       diagnosis_contentC: [
@@ -1307,6 +1820,204 @@ export default {
               ]
             },
           ]
+        },
+      ],
+      diagnosis_contentQ: [
+        {
+          target: '重性抑郁障碍 ',
+          select: null,
+          choices: [
+            {
+              title: 'MDD',
+              select: null,
+              options: [
+                '当前', '既往'
+              ]
+            },{
+              title: '伴随精神病症状',
+              select: null,
+              options: [
+                '当前', '既往'
+              ]
+            },
+          ]
+        },
+        {
+          target: '双相I型障碍',
+          select: null,
+          choices: [
+            {
+              title: '双相I型障碍-当前',
+              select: null,
+              options: [
+                '是', '否'
+              ]
+            },
+            {
+              title: '双相I型障碍-既往',
+              select: null,
+              options: [
+                '是', '否'
+              ]
+            },
+            {
+              title: '单纯型躁狂发作-当前',
+              select: null,
+              options: [
+                '是', '否'
+              ]
+            },
+            {
+              title: '单纯型躁狂发作-既往',
+              select: null,
+              options: [
+                '是', '否'
+              ]
+            },
+            {
+              title: '伴随精神病症状',
+              select: null,
+              options: [
+                '当前','既往'
+              ]
+            },
+            {
+              title: '最近的发作',
+              select: null,
+              options: [
+                '躁狂','抑郁','轻度躁狂'
+              ]
+            },
+            {
+              title: '最近的发作-伴随混合特征',
+              select: null,
+              options: [
+                '是', '否'
+              ]
+            },
+            {
+              title: '最近的发作-伴随焦虑',
+              select: null,
+              options: [
+                '是', '否'
+              ]
+            },
+            {
+              title: '最近的发作',
+              select: null,
+              options: [
+                '轻度', '中度','重度'
+              ]
+            },
+          ]
+        },
+        {
+          target: '双相情感障碍II型',
+          select: null,
+          choices: [
+            {
+              title: '双相情感障碍II型-当前',
+              select: null,
+              options: [
+                '是', '否'
+              ]
+            },
+            {
+              title: '双相情感障碍II型-既往',
+              select: null,
+              options: [
+                '是', '否'
+              ]
+            },
+            {
+              title: '最近的发作',
+              select: null,
+              options: [
+                '轻度躁狂','抑郁',
+              ]
+            },
+            {
+              title: '最近的发作-伴随混合特征',
+              select: null,
+              options: [
+                '是', '否'
+              ]
+            },
+            {
+              title: '最近的发作-伴随焦虑',
+              select: null,
+              options: [
+                '是', '否'
+              ]
+            },
+            {
+              title: '最近的发作',
+              select: null,
+              options: [
+                '轻度', '中度','重度'
+              ]
+            },
+          ]
+        },
+      ],
+      diagnosis_contentP: [
+        {
+          target: '反社会性人格障碍-终生',
+          select: null,
+        },
+      ],
+      diagnosis_contentN: [
+        {
+          target: '广泛性焦虑障碍-现患',
+          select: null,
+        },
+      ],
+      diagnosis_contentMB: [
+        {
+          target: '暴食障碍-现患',
+          select: null,
+          choices: [
+            {
+              title: '分类',
+              select: null,
+              options: [
+                '轻度', '中度', '重度','极重度'
+              ]
+            },
+          ]
+        },
+      ],
+      diagnosis_contentM: [
+        {
+          target: '神经性贪食-现患',
+          select: null,
+        },
+        {
+          target: '神经性厌食暴食/清除型-现患',
+          select: null,
+        },
+        {
+          target: '神经性厌食限制型-现患',
+          select: null,
+        },
+        {
+          target: '进食障碍分类',
+          select: null,
+          choices: [
+            {
+              title: '类别',
+              select: null,
+              options: [
+                '轻度','中度','重度','极重度'
+              ]
+            }
+          ]
+        },
+      ],
+      diagnosis_contentL: [
+        {
+          target: '神经性厌食-现患',
+          select: null,
         },
       ],
     }
