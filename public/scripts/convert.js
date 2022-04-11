@@ -81,6 +81,22 @@ const add_diagnosisJ = function (columns, data_list, diagnosis_content) {
     add_col(columns, data_list, 'J3b', diagnosis_content[0].choices[2].select)
 }
 
+const add_diagnosisK = function (columns, data_list, diagnosis_content) {
+    add_col(columns, data_list, 'K11b', diagnosis_content[0].select)
+    add_col(columns, data_list, 'K12a', diagnosis_content[1].select)
+    add_col(columns, data_list, 'K13', diagnosis_content[2].select)
+    add_col(columns, data_list, 'K14', diagnosis_content[3].select)
+}
+
+const add_diagnosisL = function (columns, data_list, diagnosis_content) {
+    add_col(columns, data_list, 'L5a', diagnosis_content[0].select)
+}
+
+const add_diagnosisM = function (columns, data_list, diagnosis_content) {
+    add_col(columns, data_list, 'M', diagnosis_content[0].select)
+
+}
+
 export function export_csv(json_data) {
     let columns = []
     let data_list = []
@@ -118,6 +134,18 @@ export function export_csv(json_data) {
     // question J:
     add_question_pairs(columns, data_list, json_data.questionJ)
     add_diagnosisJ(columns, data_list, json_data.diagnosis_contentJ)
+
+    // question K:
+    add_question_pairs(columns, data_list, json_data.questionJ)
+    add_diagnosisK(columns, data_list, json_data.diagnosis_contentK)
+
+    // question L:
+    add_question_pairs(columns, data_list, json_data.questionL)
+    add_diagnosisL(columns, data_list, json_data.diagnosis_contentL)
+
+    // question M:
+    add_question_pairs(columns, data_list, json_data.questionM)
+    add_diagnosisM(columns, data_list, json_data.diagnosis_contentM)
 
     // transfer list to csv data
     let csv_data = ""

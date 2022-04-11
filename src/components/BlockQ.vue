@@ -21,7 +21,7 @@
     </div>
 
     <!-- 诊断框 -->
-    <el-row>
+    <el-row style="margin: 10px 0">
       <div class="remiders">
         <Remider content="抑郁发作编码为是(当前或者既往)? 和 躁狂发作编码为否(当前或者既往)? 和 (轻度)躁狂发作编码为否(当前并且既往发作)?
         和 排除器质性原因(O2总结)编码为“是”?"></Remider>
@@ -30,9 +30,9 @@
         <Remider content="伴随精神病特征, 当前: 如果1b 或者 2a(当前)编码为“是”"></Remider>
         <Remider content="伴随精神病特征, 既往: 如果1a 或者 2a(既往)编码为“是”"></Remider>
       </div>
-      <DiagnosticBox :diagnosis_content="d[0]"></DiagnosticBox>
+      <DiagnosticBox :diagnosis_content="d[0]" no_confirm></DiagnosticBox>
     </el-row>
-    <el-row>
+    <el-row style="margin: 10px 0">
       <div class="remiders">
         <Remider content="d	躁狂发作编码为“是”(当前或者过去) 并且 排除器质性原因(O2总结)编码为“是”？"></Remider>
         <br>
@@ -46,7 +46,25 @@
         <Remider content="如果最近的情绪发作是混合型，焦虑型或精神病性特征; 混合特征的低/躁狂=低/躁狂+患者有至少3种A3选项中的症状;
         混合性抑郁=重度抑郁发作+患者有至少3种C3选项中的症状; 焦虑不安=患者有至少3种N3选项中的症状"></Remider>
       </div>
-      <DiagnosticBox :diagnosis_content="d[1]"></DiagnosticBox>
+      <DiagnosticBox :diagnosis_content="d[1]" no_confirm></DiagnosticBox>
+    </el-row>
+
+    <el-row style="margin: 10px 0">
+      <div class="remiders">
+        <Remider content="e. 抑郁发作编码为 是 (当前或者过去)? "></Remider>
+        <Remider content="并且 轻度躁狂发作编码为 是(当前或者过去)?"></Remider>
+        <Remider content="并且 躁狂发作编码为 否 (当前和过去))?"></Remider>
+        <Remider content="并且 排除器质性原因(O2总结)编码为“是”?"></Remider>
+        <br>
+        <Remider content="详细说明:"></Remider>
+        <Remider content="如果双相情感障碍目前或过去或两者兼而有之"></Remider>
+        <Remider content="如果最近的情绪发作轻度躁狂的或沮丧(相互排斥)"></Remider>
+        <Remider content="    如果最近的情绪发作是混合的，焦虑的或精神病的特征"></Remider>
+        <Remider content="混合特征的轻躁狂/躁狂=轻躁狂/躁狂+ A3患者至少3种症状"></Remider>
+        <Remider content="混合性抑郁=重度抑郁发作+ C3至少3种症状"></Remider>
+        <Remider content="焦虑不安=至少有3种N3症状"></Remider>
+      </div>
+      <DiagnosticBox :diagnosis_content="d[2]" no_confirm></DiagnosticBox>
     </el-row>
 
   </div>

@@ -10,6 +10,7 @@
   <BlockH :questions="questionH" :diagnosis="diagnosis_contentH"></BlockH>
   <BlockI :questions="questionI" :diagnosis="diagnosis_contentI"></BlockI>
   <BlockJ :questions="questionJ" :diagnosis="diagnosis_contentJ"></BlockJ>
+  <BlockK :questions="questionK" :diagnosis="diagnosis_contentK"></BlockK>
   <BlockL :questions="questionL" :diagnosis="diagnosis_contentL"></BlockL>
   <BlockM :questions="questionM" :diagnosis="diagnosis_contentM"></BlockM>
   <BlockMB :questions="questionMB" :diagnosis="diagnosis_contentMB"></BlockMB>
@@ -31,6 +32,7 @@ import BlockG from "./components/BlockG";
 import BlockH from "./components/BlockH";
 import BlockI from "./components/BlockI";
 import BlockJ from "./components/BlockJ";
+import BlockK from "./components/BlockK";
 import InfoHeader from "./components/InfoHeader";
 import {export_csv} from "../public/scripts/convert"
 import BlockQ from "./components/BlockQ";
@@ -45,6 +47,7 @@ export default {
   name: 'App',
   components: {
     InfoHeader,
+    BlockK,
     BlockJ,
     BlockI,
     BlockH,
@@ -1042,6 +1045,7 @@ export default {
           select: null,
           remark: "",
         },
+
         {
           id: "K7a",
           desc: "你曾经在清醒的时候看到过特别的东西，或看到别人看不到的事物？",
@@ -1098,23 +1102,23 @@ export default {
           select: null,
           remark: "",
         },
+
         {
-          id: "",
-          desc: "",
-          type: "TF",
-          select: null,
+          id: "K11a1",
+          desc: "这种心境障碍发作持续了多久？",
+          type: "InputRow",
           remark: "",
         },
         {
-          id: "",
-          desc: "",
-          type: "TF",
-          select: null,
+          id: "K11a2",
+          desc: "这种精神病性障碍发作持续了多久",
+          type: "InputRow",
           remark: "",
         },
         {
-          id: "",
-          desc: "",
+          id: "K11a",
+          desc: "如果目前为心境障碍发作，且心境障碍出现在精神病性症状活跃期" +
+              "及残存期的大多数时间里，K11a才编码为“是”，否则编码为“否”",
           type: "TF",
           select: null,
           remark: "",
@@ -1202,7 +1206,7 @@ export default {
         {
           id: "P1f",
           desc: "强迫某人进行性活动?",
-              type: "TF",
+          type: "TF",
           select: false,
           remark: "",
         },
@@ -1618,8 +1622,7 @@ export default {
         {
           target: '躁狂发作',
           select: null,
-          choices: [
-          ],
+          choices: [],
           confirms: [
             {
               title: '',
@@ -1682,8 +1685,7 @@ export default {
         {
           target: '惊恐障碍',
           select: null,
-          choices: [
-          ],
+          choices: [],
           confirms: [
             {
               title: '',
@@ -1700,8 +1702,7 @@ export default {
         {
           target: '广场恐怖症',
           select: null,
-          choices: [
-          ],
+          choices: [],
           confirms: [
             {
               title: '',
@@ -1822,20 +1823,44 @@ export default {
           ]
         },
       ],
+      diagnosis_contentK: [
+        {
+          target: '心境障碍 伴精神病性症状-终生',
+          select: null,
+          choices: []
+        },
+        {
+          target: '心境障碍 伴精神病性症状-现患',
+          select: null,
+          choices: []
+        },
+        {
+          target: '精神病性障碍-现患',
+          select: null,
+          choices: []
+        },
+        {
+          target: '精神病性障碍-终身',
+          select: null,
+          choices: []
+        },
+      ],
       diagnosis_contentQ: [
         {
           target: '重性抑郁障碍 ',
           select: null,
-          choices: [
+          choices: [],
+          confirms: [
             {
               title: 'MDD',
-              select: null,
+              select: [null, null],
               options: [
                 '当前', '既往'
               ]
-            },{
+            },
+            {
               title: '伴随精神病症状',
-              select: null,
+              select: [null, null],
               options: [
                 '当前', '既往'
               ]
@@ -1847,66 +1872,47 @@ export default {
           select: null,
           choices: [
             {
-              title: '双相I型障碍-当前',
+              title: '最近的发作',
               select: null,
               options: [
-                '是', '否'
+                '躁狂', '抑郁', '轻度躁狂'
               ]
             },
             {
-              title: '双相I型障碍-既往',
+              title: '最近的发作',
               select: null,
               options: [
-                '是', '否'
+                '轻度', '中度', '重度'
+              ]
+            },
+          ],
+          confirms: [
+            {
+              title: '双相I型障碍',
+              select: [null, null],
+              options: [
+                '当前', '既往'
               ]
             },
             {
-              title: '单纯型躁狂发作-当前',
-              select: null,
+              title: '单纯型躁狂发作',
+              select: [null, null],
               options: [
-                '是', '否'
-              ]
-            },
-            {
-              title: '单纯型躁狂发作-既往',
-              select: null,
-              options: [
-                '是', '否'
+                '当前', '既往'
               ]
             },
             {
               title: '伴随精神病症状',
-              select: null,
+              select: [null, null],
               options: [
-                '当前','既往'
+                '当前', '既往'
               ]
             },
             {
               title: '最近的发作',
-              select: null,
+              select: [null, null],
               options: [
-                '躁狂','抑郁','轻度躁狂'
-              ]
-            },
-            {
-              title: '最近的发作-伴随混合特征',
-              select: null,
-              options: [
-                '是', '否'
-              ]
-            },
-            {
-              title: '最近的发作-伴随焦虑',
-              select: null,
-              options: [
-                '是', '否'
-              ]
-            },
-            {
-              title: '最近的发作',
-              select: null,
-              options: [
-                '轻度', '中度','重度'
+                '混合特征', '伴随焦虑'
               ]
             },
           ]
@@ -1916,45 +1922,33 @@ export default {
           select: null,
           choices: [
             {
-              title: '双相情感障碍II型-当前',
+              title: '最近的发作',
               select: null,
               options: [
-                '是', '否'
-              ]
-            },
-            {
-              title: '双相情感障碍II型-既往',
-              select: null,
-              options: [
-                '是', '否'
+                '轻度躁狂', '抑郁',
               ]
             },
             {
               title: '最近的发作',
               select: null,
               options: [
-                '轻度躁狂','抑郁',
+                '轻度', '中度', '重度'
               ]
             },
+          ],
+          confirms: [
             {
-              title: '最近的发作-伴随混合特征',
-              select: null,
+              title: '双相情感障碍II型',
+              select: [null, null],
               options: [
-                '是', '否'
-              ]
-            },
-            {
-              title: '最近的发作-伴随焦虑',
-              select: null,
-              options: [
-                '是', '否'
+                '当前发作', '既往发作'
               ]
             },
             {
               title: '最近的发作',
-              select: null,
+              select: [null, null],
               options: [
-                '轻度', '中度','重度'
+                '混合特征', '伴随焦虑',
               ]
             },
           ]
@@ -1981,7 +1975,7 @@ export default {
               title: '分类',
               select: null,
               options: [
-                '轻度', '中度', '重度','极重度'
+                '轻度', '中度', '重度', '极重度'
               ]
             },
           ]
@@ -2008,7 +2002,7 @@ export default {
               title: '类别',
               select: null,
               options: [
-                '轻度','中度','重度','极重度'
+                '轻度', '中度', '重度', '极重度'
               ]
             }
           ]
@@ -2023,18 +2017,18 @@ export default {
     }
   },
   methods: {
-    finish_questionnaire(){
+    finish_questionnaire() {
       const cur = new Date()
       this.detail_info.end_time = `${cur.getHours()}:${cur.getMinutes()}`
       const duration = (cur.getTime() - this.detail_info.assess_date.getTime()) / 1000
-      this.detail_info.assess_duration = `${Math.ceil(duration/60)}`
+      this.detail_info.assess_duration = `${Math.ceil(duration / 60)}`
     },
     export_json_data() {
       this.finish_questionnaire()
       const json_data = this.$data
       export_csv(json_data)
     },
-    export_pdf(){
+    export_pdf() {
       print()
     }
   },

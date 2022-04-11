@@ -29,7 +29,7 @@
         <el-col :span="5">备注</el-col>
       </el-row>
 
-<!--      C3-->
+      <!--      C3-->
       <Remider content="如果C1b或C2b=是；则仅需要询问现在发作和既往症状最明显时的情形"></Remider>
       <Remider content="如果C1b和C2b=否；则询问既往症状最明显时的情形"></Remider>
       <PeriodTFRow :question="q[4]" class="question"></PeriodTFRow>
@@ -90,7 +90,7 @@
       <DiagnosticBox :diagnosis_content="d[2]" no_confirm/>
     </el-row>
 
-    <div  v-if="require_detail_question">
+    <div v-if="require_detail_question">
       <Remider content="如果既往或当前躁狂发作编码“是”，请问："></Remider>
       <TFRow :question="q[15]" class="question"></TFRow>
       <Remider content="如果既往或当前（轻）躁狂发作编码“是”，请问："></Remider>
@@ -144,6 +144,7 @@ export default {
   margin: 0 auto;
   width: 1000px;
 }
+
 .question {
   margin: 30px 50px;
 }
