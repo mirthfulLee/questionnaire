@@ -6,14 +6,16 @@
       </div>
     </template>
 
-    <el-radio-group v-model="content.select" @change="reset_options">
-      <el-radio-button :label=false
-      >否
-      </el-radio-button>
-      <el-radio-button :label=true
-      >是
-      </el-radio-button>
-    </el-radio-group>
+    <div v-if="!no_confirm">
+      <el-radio-group v-model="content.select" @change="reset_options">
+        <el-radio-button label=0
+        >否
+        </el-radio-button>
+        <el-radio-button label=1
+        >是
+        </el-radio-button>
+      </el-radio-group>
+    </div>
 
     <div v-for="(choice, i) in content.choices" :key="i" style="display: flex; margin:5px auto">
       <div class="title" v-if="choice.title!==''">{{ choice.title }}</div>
@@ -23,6 +25,17 @@
           >{{ option }}
           </el-radio>
         </el-radio-group>
+      </div>
+    </div>
+
+    <div v-for="(confirm, i) in content.confirms" :key="i" style="display: flex; margin:5px auto">
+      <div class="title" v-if="confirm.title!==''">{{ confirm.title }}</div>
+      <div v-if="confirm.options.length > 0">
+        <div>
+          <div v-for="(option, i) in confirm.options" :key="option" class="checkbox">
+            <el-checkbox :label="option" v-model="confirm.select[i]"/>
+          </div>
+        </div>
       </div>
     </div>
   </el-card>
@@ -37,7 +50,11 @@ export default {
     }
   },
   props: {
-    diagnosis_content: Object
+    diagnosis_content: Object,
+    no_confirm: {
+      type: Boolean,
+      default: false
+}
   },
   methods: {
     reset_options() {
@@ -67,6 +84,14 @@ export default {
   justify-content: flex-start;
   margin: 0 auto;
   width: 130px;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 auto;
+  width: 130px;
+  writing-mode: horizontal-tb;
 }
 
 .title {
