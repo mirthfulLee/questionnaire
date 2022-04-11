@@ -16,10 +16,10 @@
           <right />
         </el-icon>
         <el-radio-group v-model="q.select">
-          <el-radio-button :label=0
+          <el-radio-button label=0
           >否
           </el-radio-button>
-          <el-radio-button :label=1
+          <el-radio-button label=1
           >是
           </el-radio-button>
         </el-radio-group>

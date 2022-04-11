@@ -13,10 +13,10 @@
       </el-col>
       <el-col :span="3" style="border-right: 1px solid black" :offset="1">
         <el-radio-group v-model="q.having">
-          <el-radio-button :label=false
+          <el-radio-button label=0
           >否
           </el-radio-button>
-          <el-radio-button  :label=true
+          <el-radio-button  label=1
           >是
           </el-radio-button>
         </el-radio-group>
@@ -24,10 +24,10 @@
 
       <el-col :span="3">
         <el-radio-group v-model="q.had">
-          <el-radio-button :label=false
+          <el-radio-button label=0
           >否
           </el-radio-button>
-          <el-radio-button :label=true
+          <el-radio-button label=1
           >是
           </el-radio-button>
         </el-radio-group>

@@ -1,6 +1,7 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+  <InfoHeader :detail_info="detail_info"></InfoHeader>
   <BlockC :questions="questionC" :diagnosis="diagnosis_contentC"></BlockC>
   <BlockD :questions="questionD" :diagnosis="diagnosis_contentD"></BlockD>
   <BlockE :questions="questionE" :diagnosis="diagnosis_contentE"></BlockE>
@@ -10,7 +11,8 @@
   <BlockI :questions="questionI" :diagnosis="diagnosis_contentI"></BlockI>
   <BlockJ :questions="questionJ" :diagnosis="diagnosis_contentJ"></BlockJ>
 
-  <el-button @click="export_json_data">导出pdf文件</el-button>
+  <el-button @click="export_json_data">导出csv文件</el-button>
+  <el-button @click="export_pdf">导出pdf文件</el-button>
 </template>
 
 <script>
@@ -22,10 +24,13 @@ import BlockG from "./components/BlockG";
 import BlockH from "./components/BlockH";
 import BlockI from "./components/BlockI";
 import BlockJ from "./components/BlockJ";
+import InfoHeader from "./components/InfoHeader";
+import {export_csv} from "../public/scripts/convert"
 
 export default {
   name: 'App',
   components: {
+    InfoHeader,
     BlockJ,
     BlockI,
     BlockH,
@@ -37,40 +42,49 @@ export default {
   },
   data() {
     return {
+      detail_info: {
+        patient_name: '',
+        patient_id: '',
+        birthday: '',
+        start_time: '',
+        end_time: '',
+        assessor_name: '',
+        assess_date: '',
+        assess_duration: ''
+      },
+
       questionC: [
         {
-          id: "C1.a",
+          id: "C1a",
           desc: "你是否曾有一段时间，感觉“情绪高涨”或精力充沛，或遇到麻烦时仍充满自信，或其他人认为你和平时不一样？（使用酒精或其他精神活性药物除外）",
           type: "TF",
           select: null,
           remark: "",
         },
         {
-          id: "C1.b",
+          id: "C1b",
           desc: "你现在感到“情绪高涨”或者精力充沛？",
           type: "TF",
           select: null,
-          visible: false,
           remark: "",
         },
         {
-          id: "C2.a",
+          id: "C2a",
           desc: "你是否曾有一段时间，有几天特别容易激惹，并因此经常与人发生言语争执或肢体冲突吗？或者冲你家庭成员以外的人大声喊叫吗？即使在你认为在合乎情理的处境下，你或你周围的人注意到你比其他人更容易激惹或者反应过分强烈吗？",
           type: "TF",
           select: null,
           remark: "",
         },
         {
-          id: "C2.b",
+          id: "C2b",
           desc: "你现在仍然感觉容易激惹或发脾气吗？",
           type: "TF",
           select: null,
-          visible: false,
           remark: "",
         },
 
         {
-          id: "C3.a",
+          id: "C3a1",
           desc: "你是否感觉你能做别人做不了的事、或者你是一个特别重要的人？",
           type: "PeriodTF",
           having: null,
@@ -78,15 +92,15 @@ export default {
           remark: "",
         },
         {
-          id: "|-",
-          desc: "如果选“是”，请举例子。\n 这些例子是否和妄想内容一致？",
+          id: "C3a2",
+          desc: "这些例子是否和妄想内容一致？",
           type: "PeriodTF",
           having: null,
           had: null,
           remark: "",
         },
         {
-          id: "C3.b",
+          id: "C3b",
           desc: "你是否只需要很少的睡眠（如“你感觉睡几个小时便休息好了”）？",
           type: "PeriodTF",
           having: null,
@@ -94,7 +108,7 @@ export default {
           remark: "",
         },
         {
-          id: "C3.c",
+          id: "C3c",
           desc: "你是否非常健谈、难以打断，或者语速很快，以致别人难以理解？",
           type: "PeriodTF",
           having: null,
@@ -102,7 +116,7 @@ export default {
           remark: "",
         },
         {
-          id: "C3.d",
+          id: "C3d",
           desc: "你是否感到思考问题的速度很快或者能从一个话题很快跳到另一个话题？",
           type: "PeriodTF",
           having: null,
@@ -110,7 +124,7 @@ export default {
           remark: "",
         },
         {
-          id: "C3.e",
+          id: "C3e",
           desc: "你是否觉得注意力很容易分散，任何一点很小的刺激都能分散你的注意力？",
           type: "PeriodTF",
           having: null,
@@ -118,7 +132,7 @@ export default {
           remark: "",
         },
         {
-          id: "C3.f",
+          id: "C3f",
           desc: "你是否感到活动或动力明显增多，无论是在工作、学业、人际交往或是性方面，或者感到生理或精神上不需要休息？此类活动增多可以是有意识或无意识。",
           type: "PeriodTF",
           having: null,
@@ -126,7 +140,7 @@ export default {
           remark: "",
         },
         {
-          id: "C3.g",
+          id: "C3g",
           desc: "你是否热衷于参与一些使你感到很快乐的活动，而不考虑风险或后果（如花很多时间狂欢、莽撞驾驶或性活动轻率）？",
           type: "PeriodTF",
           having: null,
@@ -135,17 +149,13 @@ export default {
         },
         {
           id: "C3总结",
-          desc: "如果C1b=否，C3 （包括C3f在内）有4项或以上回答编码“是”吗？ \n" +
-              "如果C1b=是，C3 （包括C3f在内）有3项或以上回答编码“是”吗？\n" +
-              "如果C1a=否，C3 （包括C3f在内）有4项或以上回答编码“是”吗？ \n" +
-              "如果C1a=是，C3 （包括C3f在内）有3项或以上回答编码“是”吗？\n" +
-              "只要在同一时间段出现3或4项回答“是”便编码“是”\n" +
-              "规则：情绪高涨需要C3有3项“是”的编码，而激惹则需要有4项“是”的编码",
+          desc: "规则：情绪高涨需要C3有3项“是”的编码，而激惹则需要有4项“是”的编码",
           type: "PeriodTF",
           having: null,
           had: null,
           remark: "",
         },
+
         {
           id: "C4",
           desc: "这些症状最长可持续多久呢？（一天中大部分时间或几乎所有时间）",
@@ -154,6 +164,7 @@ export default {
           options: ["持续时间不足3天", "持续时间超过4天，但不足7天", "持续时间7天及以上"],
           remark: "",
         },
+
         {
           id: "C5",
           desc: "你是否因这些问题住过院？",
@@ -171,29 +182,30 @@ export default {
           remark: "",
         },
         {
-          id: "C7",
+          id: "C7a",
           desc: "你言行方式的明显变化是否与这些症状有关，并且这种新的言行方式和平时的你不同？",
           type: "PeriodTF",
           having: null,
           had: null,
           remark: "",
         },
+
         {
-          id: "C8.a",
+          id: "C8a",
           desc: "在你一生中是否有过2次及以上这样的（躁狂）发作，持续时间7天及以上",
           type: "TF",
           select: null,
           remark: "",
         },
         {
-          id: "C8.b",
+          id: "C8b",
           desc: "在你一生中是否有过2次及以上这样的（躁狂）发作，持续时间4天及以上",
           type: "TF",
           select: null,
           remark: "",
         },
         {
-          id: "C8.c",
+          id: "C8c",
           desc: "在你一生中是否有过2次及以上这样的轻躁狂症状，持续时间为1-3天",
           type: "TF",
           select: null,
@@ -758,13 +770,13 @@ export default {
           remark: "",
         },
         {
-          id: "",
+          id: "J1b",
           desc: "注明使用最多的药物",
           type: "InputRow",
           remark: "",
         },
         {
-          id: "",
+          id: "J1c",
           desc: "哪个药物造成最大的问题?",
           type: "InputRow",
           remark: "",
@@ -1093,9 +1105,11 @@ export default {
           target: '躁狂发作',
           select: null,
           choices: [
+          ],
+          confirms: [
             {
               title: '',
-              select: null,
+              select: [false, false],
               options: [
                 '目前发作',
                 '既往发作'
@@ -1155,9 +1169,11 @@ export default {
           target: '惊恐障碍',
           select: null,
           choices: [
+          ],
+          confirms: [
             {
               title: '',
-              select: null,
+              select: [null, null],
               options: [
                 '终身',
                 '现患'
@@ -1171,9 +1187,11 @@ export default {
           target: '广场恐怖症',
           select: null,
           choices: [
+          ],
+          confirms: [
             {
               title: '',
-              select: null,
+              select: [null, null],
               options: [
                 '终身',
                 '现患'
@@ -1192,9 +1210,11 @@ export default {
               select: null,
               options: []
             },
+          ],
+          confirms: [
             {
               title: '',
-              select: null,
+              select: [null],
               options: [
                 '仅在公共场所演讲或表演时出现恐惧',
               ]
@@ -1232,9 +1252,11 @@ export default {
               select: null,
               options: []
             },
+          ],
+          confirms: [
             {
               title: '伴有',
-              select: null,
+              select: [null, null, null],
               options: [
                 '人格解体', '非真实感', '延迟性发作'
               ]
@@ -1289,7 +1311,22 @@ export default {
     }
   },
   methods: {
+    finish_questionnaire(){
+      const cur = new Date()
+      this.detail_info.end_time = `${cur.getHours()}:${cur.getMinutes()}`
+      const duration = (cur.getTime() - this.detail_info.assess_date.getTime()) / 1000
+      this.detail_info.assess_duration = `${Math.ceil(duration/60)}`
+    },
     export_json_data() {
+      this.finish_questionnaire()
+      const json_data = {
+        detail_info: this.detail_info,
+        questionC: this.questionC,
+        diagnosis_contentC: this.diagnosis_contentC,
+      }
+      export_csv(json_data)
+    },
+    export_pdf(){
       print()
     }
   },

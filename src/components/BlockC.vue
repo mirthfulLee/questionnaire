@@ -32,9 +32,8 @@
 <!--      C3-->
       <Remider content="如果C1b或C2b=是；则仅需要询问现在发作和既往症状最明显时的情形"></Remider>
       <Remider content="如果C1b和C2b=否；则询问既往症状最明显时的情形"></Remider>
-      <PeriodTFRow :question="q[3]" class="question"></PeriodTFRow>
-      <Remider content="如果选“是”，请举例子。"></Remider>
       <PeriodTFRow :question="q[4]" class="question"></PeriodTFRow>
+      <Remider content="如果选“是”，请举例子。"></Remider>
       <PeriodTFRow :question="q[5]" class="question"></PeriodTFRow>
       <PeriodTFRow :question="q[6]" class="question"></PeriodTFRow>
       <PeriodTFRow :question="q[7]" class="question"></PeriodTFRow>
@@ -42,19 +41,18 @@
       <PeriodTFRow :question="q[9]" class="question"></PeriodTFRow>
       <PeriodTFRow :question="q[10]" class="question"></PeriodTFRow>
       <PeriodTFRow :question="q[11]" class="question"></PeriodTFRow>
+      <PeriodTFRow :question="q[12]" class="question"></PeriodTFRow>
+      <Remider content="若C1b=否，C3 （包括C3f在内）有4项或以上回答编码“是”？"/>
+      <Remider content="若C1b=是，C3 （包括C3f在内）有3项或以上回答编码“是”？"/>
+      <Remider content="若C1a=否，C3 （包括C3f在内）有4项或以上回答编码“是”？"/>
+      <Remider content="若C1a=是，C3 （包括C3f在内）有3项或以上回答编码“是”？"/>
+      <Remider content="只要在同一时间段出现3或4项回答“是”便编码“是”"/>
 
-      <OptionRow :question="q[12]" class="question"></OptionRow>
+      <OptionRow :question="q[13]" class="question"></OptionRow>
 
-      <PeriodTFRow :question="q[13]" class="question"></PeriodTFRow>
       <PeriodTFRow :question="q[14]" class="question"></PeriodTFRow>
       <PeriodTFRow :question="q[15]" class="question"></PeriodTFRow>
-
-      <Remider content="如果既往或当前躁狂发作编码“是”，请问："></Remider>
-      <TFRow :question="q[15]" class="question"></TFRow>
-      <Remider content="如果既往或当前（轻）躁狂发作编码“是”，请问："></Remider>
-      <TFRow :question="q[16]" class="question"></TFRow>
-      <Remider content="如果既往“轻躁狂表现”编码“是”，请问："></Remider>
-      <TFRow :question="q[17]" class="question"></TFRow>
+      <PeriodTFRow :question="q[16]" class="question"></PeriodTFRow>
 
     </div>
     <!-- 诊断框 -->
@@ -78,7 +76,7 @@
         <Remider content="如果当前躁狂发作编码“是”，则当前轻躁狂发作编码“否”"></Remider>
         <Remider content="如果既往躁狂发作编码“是”，则既往轻躁狂发作编码“不详”"></Remider>
       </div>
-      <DiagnosticBox :diagnosis_content="d[1]"></DiagnosticBox>
+      <DiagnosticBox :diagnosis_content="d[1]" no_confirm/>
     </el-row>
 
     <!-- 诊断框 -->
@@ -89,8 +87,17 @@
         <Remider content="如果当前躁狂发作或轻躁狂发作编码“是”，则当前轻躁狂发作编码“否”"></Remider>
         <Remider content="如果既往躁狂发作编码“是”，则既往轻躁狂发作编码“不详”"></Remider>
       </div>
-      <DiagnosticBox :diagnosis_content="d[2]"></DiagnosticBox>
+      <DiagnosticBox :diagnosis_content="d[2]" no_confirm/>
     </el-row>
+
+    <div  v-if="require_detail_question">
+      <Remider content="如果既往或当前躁狂发作编码“是”，请问："></Remider>
+      <TFRow :question="q[15]" class="question"></TFRow>
+      <Remider content="如果既往或当前（轻）躁狂发作编码“是”，请问："></Remider>
+      <TFRow :question="q[16]" class="question"></TFRow>
+      <Remider content="如果既往“轻躁狂表现”编码“是”，请问："></Remider>
+      <TFRow :question="q[17]" class="question"></TFRow>
+    </div>
   </div>
 </template>
 
